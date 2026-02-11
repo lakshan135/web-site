@@ -738,6 +738,42 @@ h3 {
     text-decoration: none;
     font-weight: 600;
     font-size: 1.1rem;
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.footer-social {
+    margin-top: 1.5rem;
+}
+
+.yt-link {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-speed);
+    background: rgba(255, 0, 0, 0.1);
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    width: fit-content;
+}
+
+.yt-link:hover {
+    background: var(--primary-red);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-glow);
+    color: white;
+}
+
+.yt-link svg {
+    transition: transform 0.3s ease;
+}
+
+.yt-link:hover svg {
+    transform: scale(1.1);
 }
 
 .footer-bottom {
