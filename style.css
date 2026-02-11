@@ -776,12 +776,53 @@ h3 {
     transform: scale(1.1);
 }
 
+.footer-social-bottom {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.yt-button-premium {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: var(--gradient-1);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+    border: 2px solid transparent;
+}
+
+.yt-button-premium:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(255, 0, 0, 0.4);
+    background: white;
+    color: var(--primary-red);
+    border-color: var(--primary-red);
+}
+
+.yt-button-premium svg {
+    transition: transform 0.4s ease;
+}
+
+.yt-button-premium:hover svg {
+    transform: rotate(360deg) scale(1.2);
+}
+
 .footer-bottom {
     text-align: center;
     color: var(--text-secondary);
     font-size: 0.9rem;
-    padding-top: 2rem;
+    padding-top: 3rem;
     border-top: 1px solid var(--card-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Responsive */
