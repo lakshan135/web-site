@@ -780,9 +780,12 @@ h3 {
     margin-bottom: 2rem;
     display: flex;
     justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
 }
 
-.yt-button-premium {
+.yt-button-premium,
+.fb-button-premium {
     display: flex;
     align-items: center;
     gap: 0.8rem;
@@ -790,27 +793,47 @@ h3 {
     text-decoration: none;
     font-weight: 700;
     letter-spacing: 1px;
-    background: var(--gradient-1);
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.8rem;
     border-radius: 50px;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     border: 2px solid transparent;
+    font-size: 0.9rem;
+}
+
+.yt-button-premium {
+    background: var(--gradient-1);
+}
+
+.fb-button-premium {
+    background: linear-gradient(135deg, #1877F2 0%, #0052cc 100%);
+}
+
+.yt-button-premium:hover,
+.fb-button-premium:hover {
+    transform: translateY(-5px) scale(1.05);
+    background: white;
 }
 
 .yt-button-premium:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 15px 30px rgba(255, 0, 0, 0.4);
-    background: white;
     color: var(--primary-red);
     border-color: var(--primary-red);
+    box-shadow: 0 15px 30px rgba(255, 0, 0, 0.4);
 }
 
-.yt-button-premium svg {
+.fb-button-premium:hover {
+    color: #1877F2;
+    border-color: #1877F2;
+    box-shadow: 0 15px 30px rgba(24, 119, 242, 0.4);
+}
+
+.yt-button-premium svg,
+.fb-button-premium svg {
     transition: transform 0.4s ease;
 }
 
-.yt-button-premium:hover svg {
+.yt-button-premium:hover svg,
+.fb-button-premium:hover svg {
     transform: rotate(360deg) scale(1.2);
 }
 
@@ -823,6 +846,43 @@ h3 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 0.5rem;
+}
+
+.developer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+}
+
+.developer-credit {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0.8;
+}
+
+.fb-button-small {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: var(--transition-speed);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    background: rgba(24, 119, 242, 0.1);
+    border: 1px solid rgba(24, 119, 242, 0.2);
+}
+
+.fb-button-small:hover {
+    color: #1877F2;
+    background: rgba(24, 119, 242, 0.2);
+    transform: translateY(-2px);
+    border-color: #1877F2;
 }
 
 /* Responsive */
