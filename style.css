@@ -2613,3 +2613,68 @@ h3 {
         border-bottom: 2px solid #333;
     }
 }
+
+/* Background Music Controller */
+.music-controller {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 0, 0, 0.4);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.music-controller:hover {
+    background: var(--primary-red);
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+}
+
+.music-icon {
+    font-size: 1.5rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-icon.playing {
+    animation: musicSpin 3s linear infinite;
+}
+
+.music-icon.paused {
+    opacity: 0.6;
+}
+
+@keyframes musicSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 480px) {
+    .music-controller {
+        bottom: 20px;
+        left: 20px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .music-icon {
+        font-size: 1.2rem;
+    }
+}

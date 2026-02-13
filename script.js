@@ -462,5 +462,66 @@ document.addEventListener('DOMContentLoaded', () => {
                 behavior: 'smooth'
             });
         });
+
+        // Background Music Logic
+        const bgMusic = document.getElementById('bg-music');
+        const musicToggle = document.getElementById('music-toggle');
+        const musicIcon = musicToggle.querySelector('.music-icon');
+        let isPlaying = false;
+
+        const playMusic = () => {
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                musicIcon.classList.remove('paused');
+                musicIcon.classList.add('playing');
+                musicIcon.innerText = '🎵';
+                // Remove global click listeners once playing
+                document.removeEventListener('click', initializeAudio);
+                document.removeEventListener('scroll', initializeAudio);
+            }).catch(error => {
+                console.log("Autoplay prevented. Waiting for interaction.");
+                musicIcon.classList.add('paused');
+                musicIcon.classList.remove('playing');
+                musicIcon.innerText = '🔇';
+            });
+        };
+
+        const pauseMusic = () => {
+            bgMusic.pause();
+            isPlaying = false;
+            musicIcon.classList.add('paused');
+            musicIcon.classList.remove('playing');
+            musicIcon.innerText = '🔇';
+        };
+
+        const toggleMusic = () => {
+            if (isPlaying) {
+                pauseMusic();
+            } else {
+                playMusic();
+            }
+        };
+
+        // Try to play immediately
+        playMusic();
+
+        // Fallback: Play on first interaction if autoplay blocked
+        const initializeAudio = () => {
+            if (!isPlaying) {
+                playMusic();
+            }
+        };
+
+        document.addEventListener('click', initializeAudio, { once: true });
+        document.addEventListener('scroll', initializeAudio, { once: true });
+        document.addEventListener('touchstart', initializeAudio, { once: true });
+
+        // Toggle button listener
+        if (musicToggle) {
+            musicToggle.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent triggering the global interaction listener
+                toggleMusic();
+            });
+        }
     }
 });
