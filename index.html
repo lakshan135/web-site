@@ -14,6 +14,13 @@
 </head>
 
 <body>
+    <div class="top-site-banner">
+        <img src="images/Screenshot 2026-02-13 235001.png" alt="BuyItems Banner" class="banner-img">
+    </div>
+    <div class="top-notification-bar">
+        <span class="warning-icon">⚠️</span>
+        <p>Note: These services are compatible with <strong>Android Devices</strong> only.</p>
+    </div>
     <div class="background-glow"></div>
     <div class="background-glow-2"></div>
 
@@ -37,6 +44,7 @@
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#other-services">Other Services</a></li>
                 <li>
                     <a href="https://www.facebook.com/profile.php?id=61578367157426" target="_blank" class="nav-icon"
                         aria-label="Facebook">
@@ -47,14 +55,39 @@
                         </svg>
                     </a>
                 </li>
-                <li><a href="https://wa.me/94765494631?text=I%20want%20to%20Get%20Premium" class="btn-primary">Get
-                        Premium</a></li>
-
             </ul>
-            <div class="mobile-menu-btn">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="nav-actions">
+                <div class="search-bar-wrapper">
+                    <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none"
+                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="service-search" placeholder="Search...">
+                </div>
+                <button class="nav-icon cart-trigger" aria-label="Shopping Cart">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count">0</span>
+                    <span class="cart-navbar-value">Rs. 0</span>
+                </button>
+                <button class="btn-login" id="login-btn">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>Sign In</span>
+                </button>
+                <button class="mobile-menu-btn" aria-label="Mobile Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </nav>
@@ -62,6 +95,10 @@
     <header class="hero">
         <div class="container hero-content">
             <div class="hero-text">
+                <div class="hero-warning-box">
+                    <span class="warning-icon">⚠️</span>
+                    <p>Note: These services are compatible with <strong>Android Devices</strong> only.</p>
+                </div>
                 <h2 class="hero-super-title"><span class="massive-no">No 01</span> Digital Product Seller Of Sri Lanka
                 </h2>
                 <span class="badge">#1 in Sri Lanka 🇱🇰</span>
@@ -106,6 +143,193 @@
             </div>
         </div>
     </header>
+
+    <section class="best-sellers-section">
+        <div class="container">
+            <h2 class="section-title">Our <span class="gradient-text">Best Sellers</span></h2>
+            <div class="best-sellers-grid">
+                <div class="best-seller-card glass-card">
+                    <div class="best-seller-badge">Top Seller</div>
+                    <div class="bs-icon">🎬</div>
+                    <h3>Netflix Premium</h3>
+                    <p>4K UHD + Mobile Support</p>
+                    <div class="bs-price">Rs. 999<span class="period">/Lifetime</span></div>
+                    <button class="btn-primary small add-to-cart-btn" data-name="Netflix Premium Lifetime"
+                        data-price="999" data-period="/Lifetime">Add to Cart</button>
+                </div>
+                <div class="best-seller-card glass-card featured-bs">
+                    <div class="best-seller-badge">Most Popular</div>
+                    <div class="bs-icon">📺</div>
+                    <h3>YouTube Premium (1 Year)</h3>
+                    <p>Ad-Free + Music + Background Play</p>
+                    <div class="bs-price">Rs. 999<span class="period">/yr</span></div>
+                    <button class="btn-primary small add-to-cart-btn" data-name="1 Year YouTube Premium"
+                        data-price="999" data-period="/yr">Add to Cart</button>
+                </div>
+                <div class="best-seller-card glass-card">
+                    <div class="best-seller-badge">Trending</div>
+                    <div class="bs-icon">✂️</div>
+                    <h3>CapCut Pro</h3>
+                    <p>Pro Effects + Templates + No Watermark</p>
+                    <div class="bs-price">Rs. 699<span class="period">/Lifetime</span></div>
+                    <button class="btn-primary small add-to-cart-btn" data-name="CapCut Pro Lifetime" data-price="699"
+                        data-period="/Lifetime">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="weekly-deals">
+        <div class="container">
+            <div class="deals-header">
+                <h2 class="section-title">Weekly <span class="gradient-text">Hot Deals</span></h2>
+                <div class="deal-timer">
+                    <span class="timer-label">Ends In:</span>
+                    <div class="timer-slots">
+                        <div class="slot"><span id="days">00</span><small>Days</small></div>
+                        <div class="slot"><span id="hours">19</span><small>Hrs</small></div>
+                        <div class="slot"><span id="minutes">00</span><small>Min</small></div>
+                        <div class="slot"><span id="seconds">00</span><small>Sec</small></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deals-grid">
+                <!-- Deal 1 -->
+                <div class="deal-card glass-card">
+                    <div class="deal-tag">MEGA BUNDLE</div>
+                    <div class="deal-image">
+                        <div class="combined-icons">📺+🎬+✂️</div>
+                    </div>
+                    <div class="deal-info">
+                        <h3>Ultimate Creator Trio</h3>
+                        <p>YouTube (Life) + Netflix (Life) + CapCut Pro (Life)</p>
+                        <div class="deal-price">
+                            <span class="old-price">Rs. 3,297</span>
+                            <span class="new-price">Rs. 2,499</span>
+                        </div>
+                        <button class="btn-primary full-width add-to-cart-btn"
+                            data-name="Ultimate Creator Bundle (YT+NF+CC)" data-price="2499">Grab Bundle</button>
+                    </div>
+                </div>
+
+                <!-- Deal 2 -->
+                <div class="deal-card glass-card">
+                    <div class="deal-tag">BEST VALUE</div>
+                    <div class="deal-image">
+                        <div class="combined-icons">📺+�</div>
+                    </div>
+                    <div class="deal-info">
+                        <h3>Premium Entertainment Duo</h3>
+                        <p>YouTube (1 Year) + Netflix Premium (Lifetime)</p>
+                        <div class="deal-price">
+                            <span class="old-price">Rs. 1,998</span>
+                            <span class="new-price">Rs. 1,499</span>
+                        </div>
+                        <button class="btn-primary full-width add-to-cart-btn"
+                            data-name="Entertainment Duo (YT 1Yr + NF Life)" data-price="1499">Grab Duo</button>
+                    </div>
+                </div>
+
+                <!-- Deal 3 -->
+                <div class="deal-card glass-card">
+                    <div class="deal-tag">STUDENT DEAL</div>
+                    <div class="deal-image">
+                        <div class="combined-icons">�+✂️</div>
+                    </div>
+                    <div class="deal-info">
+                        <h3>Essential Creator Pack</h3>
+                        <p>YouTube (3 Month) + CapCut Pro (Lifetime)</p>
+                        <div class="deal-price">
+                            <span class="old-price">Rs. 1,198</span>
+                            <span class="new-price">Rs. 899</span>
+                        </div>
+                        <button class="btn-primary full-width add-to-cart-btn"
+                            data-name="Essential Creator Pack (YT 3Mo + CC Life)" data-price="899">Grab Pack</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title">Trusted expertise and <span class="gradient-text">exceptional service</span> that
+                sets us apart</h2>
+            <div class="stats-grid">
+                <div class="stat-card glass-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 8L12 3L3 8V16L12 21L21 16V8Z" stroke="var(--primary-red)" stroke-width="2"
+                                stroke-linejoin="round" />
+                            <path d="M3 8L12 13L21 8" stroke="var(--primary-red)" stroke-width="2"
+                                stroke-linejoin="round" />
+                            <path d="M12 13V21" stroke="var(--primary-red)" stroke-width="2" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="stat-number gradient-text">100+</div>
+                    <h3>Products Available</h3>
+                    <p>Trusted expertise in computer sales and service</p>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
+                                stroke="var(--primary-red)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path
+                                d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z"
+                                stroke="var(--primary-red)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path
+                                d="M23 21V19C22.9993 18.1137 22.7044 17.2524 22.1614 16.5523C21.6184 15.8522 20.8581 15.3516 20 15.13"
+                                stroke="var(--primary-red)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path
+                                d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25393 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88"
+                                stroke="var(--primary-red)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="stat-number gradient-text">10,000+</div>
+                    <h3>Customers</h3>
+                    <p>Serving satisfied customers across Sri Lanka</p>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z"
+                                stroke="var(--primary-red)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M9 12L11 14L15 10" stroke="var(--primary-red)" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="stat-number gradient-text">100%</div>
+                    <h3>Quality Products</h3>
+                    <p>Genuine products with full warranty coverage</p>
+                </div>
+                <div class="stat-card glass-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M14.7 6.3C15.5 5.5 16.8 5.5 17.7 6.3L19.7 8.3C20.5 9.2 20.5 10.5 19.7 11.3L8.3 22.7L2 23L2.3 16.7L13.7 5.3"
+                                stroke="var(--primary-red)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M18 14H22V18H18V14Z" stroke="var(--primary-red)" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M13.7 5.3L16 7.6" stroke="var(--primary-red)" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="stat-number gradient-text">24/7</div>
+                    <h3>Expert Support</h3>
+                    <p>Professional after-sales service and support</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="features" class="features">
         <div class="container">
@@ -152,8 +376,12 @@
                         <li>✅ Works on your own email</li>
                         <li>✅ Full Warranty</li>
                     </ul>
-                    <a href="https://wa.me/94765494631?text=I%20want%203%20Month%20YouTube%20Premium"
-                        class="btn-primary full-width">Buy Now</a>
+                    <div class="card-footer">
+                        <button class="btn-primary add-to-cart-btn" data-name="3 Month YouTube Premium" data-price="499"
+                            data-period="/3 Month">Add to Cart</button>
+                        <a href="https://wa.me/94765494631?text=I%20want%203%20Month%20YouTube%20Premium"
+                            class="btn-secondary small">Buy Now</a>
+                    </div>
                 </div>
 
                 <!-- 1 Year plan (Popular) -->
@@ -161,7 +389,7 @@
                     <div class="popular-badge">Most Popular</div>
                     <div class="plan-header">
                         <h3>1 YEAR PLAN</h3>
-                        <div class="price">Rs. 999<span class="period">/6 Month</span></div>
+                        <div class="price">Rs. 999<span class="period">/1 Year</span></div>
                     </div>
                     <ul class="plan-features">
                         <li>✅ Own Accounts</li>
@@ -170,8 +398,12 @@
                         <li>✅ Manager Dashboard</li>
                         <li>✅ Best Value</li>
                     </ul>
-                    <a href="https://wa.me/94765494631?text=I%20want%20%20One%20Year%20YouTube%20Premium"
-                        class="btn-primary full-width">Buy Now</a>
+                    <div class="card-footer">
+                        <button class="btn-primary add-to-cart-btn" data-name="1 Year YouTube Premium" data-price="999"
+                            data-period="/1 Year">Add to Cart</button>
+                        <a href="https://wa.me/94765494631?text=I%20want%20One%20Year%20YouTube%20Premium"
+                            class="btn-secondary small">Buy Now</a>
+                    </div>
                 </div>
 
                 <!-- Life time plan -->
@@ -187,10 +419,111 @@
                         <li>✅ YouTube Music Included</li>
                         <li>✅ One-time Payment</li>
                     </ul>
-                    <a href="https://wa.me/94765494631?text=I%20want%20%20Lifetime%20YouTube%20Premium"
-                        class="btn-primary full-width">Buy Now</a>
+                    <div class="card-footer">
+                        <button class="btn-primary add-to-cart-btn" data-name="Lifetime YouTube Premium"
+                            data-price="1599" data-period="/Lifetime">Add to Cart</button>
+                        <a href="https://wa.me/94765494631?text=I%20want%20Lifetime%20YouTube%20Premium"
+                            class="btn-secondary small">Buy Now</a>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="payment-methods">
+        <div class="container">
+            <h2 class="section-title">Accepted <span class="gradient-text">Payment Methods</span></h2>
+            <div class="payment-grid">
+                <div class="payment-card glass-card clickable" id="bank-transfer-card">
+                    <div class="payment-icon">🏦</div>
+                    <h3>Bank Transfer</h3>
+                    <p>Online Transfers & Mobile Banking</p>
+                    <span class="tap-hint">Tap to see details</span>
+                </div>
+                <div class="payment-card glass-card clickable" id="direct-deposit-card">
+                    <div class="payment-icon">💵</div>
+                    <h3>Direct Deposit</h3>
+                    <p>Direct Bank Deposit & CDM</p>
+                    <span class="tap-hint">Tap to see details</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bank Details Popup -->
+    <div id="bank-details-popup" class="popup-overlay">
+        <div class="popup-content glass-card">
+            <button class="close-popup">&times;</button>
+            <div class="popup-header">
+                <div class="popup-icon">🏦</div>
+                <h3>Bank Account Details</h3>
+            </div>
+            <div class="account-details">
+                <div class="detail-item">
+                    <span class="label">Account Number</span>
+                    <span class="value">88210477</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Account Holder</span>
+                    <span class="value">I.L.V.PEIRIS</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Bank</span>
+                    <span class="value">BOC BANK</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Branch</span>
+                    <span class="value">KESBEWA</span>
+                </div>
+            </div>
+            <p class="popup-footer">Please send a screenshot of the receipt to WhatsApp after payment.</p>
+        </div>
+    </div>
+
+    <section id="other-services" class="other-services">
+        <div class="container">
+            <h2 class="section-title">Other <span class="gradient-text">Premium Services</span></h2>
+
+            <div class="services-grid">
+                <div class="service-card glass-card">
+                    <div class="best-seller-badge">Best Seller</div>
+                    <div class="service-icon">🎬</div>
+                    <h3>Netflix</h3>
+                    <p>Premium 4K UHD accounts with full warranty.</p>
+                    <div class="card-footer">
+                        <button class="btn-secondary small add-to-cart-btn" data-name="Netflix Premium Lifetime"
+                            data-price="999" data-period="/Lifetime">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="service-card glass-card">
+                    <div class="best-seller-badge">Best Seller</div>
+                    <div class="service-icon">🎧</div>
+                    <h3>Spotify</h3>
+                    <p>Ad-free music streaming on your own account.</p>
+                    <div class="card-footer">
+                        <button class="btn-secondary small add-to-cart-btn" data-name="Spotify Premium" data-price="150"
+                            data-period="/mo">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="service-card glass-card">
+                    <div class="service-icon">🏰</div>
+                    <h3>Disney+</h3>
+                    <p>Access the best of Disney, Pixar, Marvel, and more.</p>
+                    <button class="btn-secondary small add-to-cart-btn" data-name="Disney+ Premium"
+                        data-price="Enquire for Price">Add to Cart</button>
+                </div>
+                <div class="service-card glass-card">
+                    <div class="best-seller-badge">Best Seller</div>
+                    <div class="service-icon">✂️</div>
+                    <h3>CapCut Pro</h3>
+                    <p>Unlock premium video editing effects, filters, and features.</p>
+                    <div class="card-footer">
+                        <button class="btn-secondary small add-to-cart-btn" data-name="CapCut Pro Lifetime"
+                            data-price="699" data-period="/Lifetime">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -233,6 +566,205 @@
             </div>
         </div>
     </footer>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Shopping <span class="gradient-text">Cart</span></h3>
+            <button class="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Items will be injected here -->
+            <div class="empty-cart-msg">Your cart is empty</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total Estimate:</span>
+                <span id="cart-total-value">Rs. 0</span>
+            </div>
+            <button class="btn-primary full-width checkout-btn">Checkout on WhatsApp</button>
+            <button class="btn-secondary full-width quotation-btn" id="generate-quotation">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+                    style="margin-right: 8px; vertical-align: middle;">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                Generate Quotation (PDF)
+            </button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-top" class="scroll-top-btn" aria-label="Main Menu">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+        <span>Main Menu</span>
+    </button>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="popup-overlay">
+        <div class="popup-content auth-card glass-card">
+            <button class="close-popup" id="close-auth">&times;</button>
+            <div class="auth-header">
+                <h3>Welcome <span class="gradient-text">Back</span></h3>
+                <p>Sign in to your BuyItems.lk account</p>
+            </div>
+
+            <form id="login-form" class="auth-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="example@mail.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-primary full-width">Sign In</button>
+
+                <div class="auth-divider">
+                    <span>Or continue with</span>
+                </div>
+
+                <button type="button" class="btn-google full-width">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="#4285F4"
+                            d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                        <path fill="#34A853"
+                            d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                        <path fill="#FBBC05"
+                            d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" />
+                        <path fill="#EA4335"
+                            d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+                    </svg>
+                    Continue with Google
+                </button>
+
+                <p class="auth-footer">Don't have an account? <a href="#" id="show-register">Register Now</a></p>
+            </form>
+
+            <form id="register-form" class="auth-form hidden">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="example@mail.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Create Password</label>
+                    <input type="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-primary full-width">Create Account</button>
+
+                <div class="auth-divider">
+                    <span>Or register with</span>
+                </div>
+
+                <button type="button" class="btn-google full-width">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="#4285F4"
+                            d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                        <path fill="#34A853"
+                            d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                        <path fill="#FBBC05"
+                            d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" />
+                        <path fill="#EA4335"
+                            d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+                    </svg>
+                    Continue with Google
+                </button>
+
+                <p class="auth-footer">Already have an account? <a href="#" id="show-login">Sign In</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Quotation Modal (for Print/PDF) -->
+    <div id="quotation-modal" class="popup-overlay">
+        <div class="quotation-print-container">
+            <div class="quotation-content glass-card paper-style">
+                <button class="close-popup no-print">&times;</button>
+                <div class="print-actions no-print">
+                    <button class="btn-primary" onclick="window.print()">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2" style="margin-right: 8px; vertical-align: middle;">
+                            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                            <rect x="6" y="14" width="12" height="8"></rect>
+                        </svg>
+                        Print / Save as PDF
+                    </button>
+                </div>
+
+                <!-- Quotation Template -->
+                <div id="quotation-template">
+                    <div class="q-header">
+                        <div class="q-logo-brand">
+                            <span class="q-logo-text">BuyItems<span class="active-dot">.lk</span></span>
+                            <p>Premium Digital Services Sri Lanka</p>
+                        </div>
+                        <div class="q-info">
+                            <h3>QUOTATION</h3>
+                            <p>Date: <span id="q-date"></span></p>
+                            <p>Invoice #: <span id="q-number"></span></p>
+                        </div>
+                    </div>
+
+                    <div class="q-addresses">
+                        <div class="q-from">
+                            <strong>From:</strong>
+                            <p>BuyItems.lk Support</p>
+                            <p>WhatsApp: +94 76 549 4631</p>
+                            <p>Web: www.buyitems.lk</p>
+                        </div>
+                        <div class="q-to">
+                            <strong>To:</strong>
+                            <p>Valued Customer</p>
+                            <p>Inquiry via Website</p>
+                        </div>
+                    </div>
+
+                    <table class="q-table">
+                        <thead>
+                            <tr>
+                                <th>Item Description</th>
+                                <th class="text-right">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody id="q-items-body">
+                            <!-- Items injected here -->
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td><strong>GRAND TOTAL</strong></td>
+                                <td class="text-right"><strong id="q-total">Rs. 0</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <div class="q-footer-notes">
+                        <h4>Terms & Conditions:</h4>
+                        <ul>
+                            <li>Instant activation after payment confirmation.</li>
+                            <li>Full warranty provided for the entire duration of the plan.</li>
+                            <li>Prices are subject to change without prior notice.</li>
+                        </ul>
+                        <div class="q-signature">
+                            <div class="sig-line"></div>
+                            <p>Authorized Signature</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
