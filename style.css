@@ -1874,17 +1874,87 @@ h3 {
         font-size: 2.5rem;
     }
 
-    .stat-card h3 {
-        font-size: 1.2rem;
+    /* Compact Product Cards for Mobile */
+    .best-seller-card,
+    .deal-card,
+    .pricing-card,
+    .service-card {
+        padding: 1.2rem 1rem !important;
+        /* Reduced padding */
+        border-radius: 16px;
+    }
+
+    .best-seller-badge,
+    .deal-tag,
+    .popular-badge {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .bs-icon,
+    .service-icon,
+    .payment-icon {
+        font-size: 2rem;
+        /* Smaller icons */
+        margin-bottom: 0.8rem;
+    }
+
+    .deal-image {
+        height: 100px;
+        /* Shorter deal image area */
+    }
+
+    .combined-icons {
+        font-size: 1.8rem;
+    }
+
+    .best-seller-card h3,
+    .deal-info h3,
+    .pricing-card h3,
+    .service-card h3 {
+        font-size: 1.1rem;
+        /* Compact titles */
+        margin-bottom: 0.5rem;
+    }
+
+    .best-seller-card p,
+    .deal-info p,
+    .service-card p {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+        line-height: 1.4;
+        min-height: auto;
+        /* Remove fixed height constraint */
     }
 
     .bs-price,
-    .new-price {
-        font-size: 1.5rem;
+    .deal-price,
+    .price {
+        font-size: 1.4rem;
+        /* Smaller price text */
+        margin-bottom: 1rem;
     }
 
-    .price {
-        font-size: 2rem;
+    .new-price {
+        font-size: 1.4rem;
+    }
+
+    .deal-info {
+        padding: 1.2rem;
+    }
+
+    .btn-primary.small,
+    .btn-secondary.small {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    /* Reduce vertical gaps between grid items */
+    .best-sellers-grid,
+    .deals-grid,
+    .pricing-grid,
+    .services-grid {
+        gap: 1rem;
     }
 
     /* Better logo sizing on mobile */
