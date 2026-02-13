@@ -1920,9 +1920,12 @@ h3 {
 
     .banner-img {
         width: 100%;
-        height: auto;
-        object-fit: contain;
+        height: auto !important;
+        /* Force auto height to maintain aspect ratio */
+        max-width: 100%;
         display: block;
+        object-fit: cover;
+        /* Ensures image covers area if container has height, though height:auto prevents this */
     }
 
     /* Better cart sidebar on mobile */
