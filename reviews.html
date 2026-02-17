@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="si">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>පාරිභෝගික අදහස් - BuyItems.lk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <meta name="description"
+        content="BuyItems.lk හරහා අපගේ පාරිභෝගිකයින්ගේ වටිනා අදහස් සහ ප්‍රතිචාර. ඔබගේ සැක දුරුකර ගන්න.">
+
+    <style>
+        /* Custom Styles for Reviews Page */
+        .reviews-section {
+            padding: 2rem 0 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .reviews-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .reviews-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .reviews-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .reviews-grid {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.5rem;
+            padding: 0.5rem 0.5rem 1rem 0.5rem;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            /* Smooth scroll on iOS */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        .reviews-grid::-webkit-scrollbar {
+            display: none;
+            /* Safari and Chrome */
+        }
+
+        .review-card {
+            padding: 2rem;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 0, 0, 0.3);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF0000 0%, #330000 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .reviewer-info h3 {
+            font-size: 1.1rem;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .reviewer-info .review-date {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: block;
+            margin-top: 0.2rem;
+        }
+
+        .star-rating {
+            color: #FFD700;
+            /* Gold color for stars */
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .review-text {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 1rem;
+            font-style: italic;
+        }
+
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.75rem;
+            color: #4CAF50;
+            background: rgba(76, 175, 80, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+
+        /* WhatsApp Style Reviews */
+        .whatsapp-chat-container {
+            max-width: 400px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            background-color: #000000;
+            /* Darker background */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .wa-header {
+            background-color: #121212;
+            /* Darker header */
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .wa-back-btn {
+            color: #00a884;
+            margin-right: 5px;
+        }
+
+        .wa-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #dcf8c6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #fff;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        /* Make avatar random colors */
+        .wa-avatar:nth-child(odd) {
+            background-color: #075E54;
+        }
+
+        .wa-avatar:nth-child(even) {
+            background-color: #128C7E;
+        }
+
+        .wa-header-info {
+            flex-grow: 1;
+        }
+
+        .wa-name {
+            color: #e9edef;
+            font-weight: 600;
+            font-size: 1rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .wa-status {
+            color: #8696a0;
+            font-size: 0.75rem;
+            margin: 0;
+        }
+
+        .wa-body {
+            background-color: #000000;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+            /* Darker overlay */
+            background-repeat: repeat;
+            background-size: 400px;
+            padding: 20px 15px;
+            flex-grow: 1;
+            /* display: flex;
+            flex-direction: column; Just flow */
+        }
+
+        .wa-message {
+            background-color: #1e1e1e;
+            /* Darker message bubble */
+            color: #bdc1c6;
+            padding: 8px 10px 8px 12px;
+            border-radius: 0px 10px 10px 10px;
+            position: relative;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            max-width: 90%;
+            box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
+            margin-bottom: 5px;
+        }
+
+        /* Triangle for received message */
+        .wa-message::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -8px;
+            width: 0;
+            height: 0;
+            border: 8px solid transparent;
+            border-top-color: #1e1e1e;
+            /* Match bubble color */
+            border-right: 0;
+            margin-top: 0px;
+        }
+
+        .wa-time {
+            float: right;
+            margin-left: 10px;
+            margin-top: 4px;
+            font-size: 0.7rem;
+            color: #8696a0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .wa-img-attachment {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            display: none;
+            /* Hidden by default */
+        }
+
+        /* Glassmorphism helpers if not in main CSS */
+        .glass-card {
+            /* Use WA style instead */
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+        }
+
+        /* Grid override for better spacing */
+        .reviews-grid>div {
+            flex: 0 0 350px;
+            /* Fixed width for horizontal scroll */
+            scroll-snap-align: center;
+        }
+
+        /* Sent message style (from BuyItems) */
+        .wa-message.sent {
+            background-color: #005c4b;
+            align-self: flex-end;
+            border-radius: 10px 0px 10px 10px;
+            margin-left: auto;
+            /* Push to right */
+        }
+
+        .wa-message.sent::before {
+            left: auto;
+            right: -8px;
+            border-left: 8px solid transparent;
+            border-right: none;
+            border-top-color: #005c4b;
+        }
+
+        /* Flex body to allow flow */
+        .wa-body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float-btn {
+            position: fixed;
+            bottom: 180px;
+            /* Moved up as requested */
+            right: 30px;
+            background: #25D366;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            transform: translateX(150%);
+            /* Start completely off-screen right */
+            opacity: 0;
+            animation: slideInRightBtn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s forwards;
+            font-family: 'Outfit', sans-serif;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes slideInRightBtn {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .whatsapp-float-btn:hover {
+            transform: scale(1.05) !important;
+            /* Override animation transform */
+            background: #20bd5a;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-float-btn svg {
+            fill: white;
+        }
+
+        /* Review Slide In Animation */
+        @keyframes reviewSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .reviews-grid>div {
+            opacity: 0;
+            /* hidden initially */
+            animation: reviewSlideIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        /* Stagger delays */
+        .reviews-grid>div:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .reviews-grid>div:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .reviews-grid>div:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+
+        .reviews-grid>div:nth-child(4) {
+            animation-delay: 0.7s;
+        }
+
+        .reviews-grid>div:nth-child(5) {
+            animation-delay: 0.9s;
+        }
+
+        .reviews-grid>div:nth-child(6) {
+            animation-delay: 1.1s;
+        }
+
+        /* Navigation Buttons */
+        .scroll-btn {
+            position: absolute;
+            top: 55%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .scroll-btn:hover {
+            background: var(--primary-red);
+            transform: translateY(-50%) scale(1.1);
+            border-color: transparent;
+        }
+
+        .prev-btn {
+            left: 20px;
+        }
+
+        .next-btn {
+            right: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                top: auto;
+                bottom: -20px;
+                /* Move below on mobile */
+                transform: none;
+            }
+
+            .scroll-btn:hover {
+                transform: scale(1.1);
+            }
+
+            .prev-btn {
+                left: 30%;
+            }
+
+            .next-btn {
+                right: 30%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-site-banner">
+        <img src="images/Screenshot 2026-02-13 235001.png" alt="BuyItems Banner" class="banner-img">
+    </div>
+    <div class="top-notification-bar">
+        <span class="warning-icon">⚠️</span>
+        <p>Note: These services are compatible with <strong>Android Devices</strong> only.</p>
+    </div>
+    <div class="background-glow"></div>
+    <div class="background-glow-2"></div>
+
+    <!-- Background Music Player -->
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="music-controller" id="music-toggle" title="Play/Pause Music">
+        <div class="music-icon playing">🎵</div>
+    </div>
+
+    <!-- Floating Background Icons & Text -->
+    <div class="floating-icons">
+        <div class="f-icon f-icon-1">▶</div>
+        <div class="f-icon f-icon-2">🎵</div>
+        <div class="f-icon f-icon-3">▶</div>
+        <div class="f-icon f-icon-4">🎧</div>
+        <div class="f-icon f-icon-5">▶</div>
+        <div class="f-icon f-icon-6">▶</div>
+        <div class="f-icon f-icon-7">🎵</div>
+    </div>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <img src="images/my-logo.png" alt="BuyItems.lk Logo" class="logo-icon">
+                BuyItems<span class="active-dot">.lk</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="reviews.html" style="color: var(--primary-red);">Reviews</a></li>
+                <li>
+                    <a href="https://www.facebook.com/profile.php?id=61578367157426" target="_blank" class="nav-icon"
+                        aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.846 3.444 8.89 8.144 9.639v-6.82H7.693v-2.82h2.45V9.873c0-2.42 1.442-3.768 3.665-3.768 1.065 0 2.172.189 2.172.189v2.388h-1.223c-1.196 0-1.57.742-1.57 1.503v1.815h2.69l-.43 2.82h-2.26v6.82C18.556 20.89 22 16.846 22 12z" />
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+            <div class="nav-actions">
+                <a href="index.html" class="btn-login" id="login-btn-home">
+                    <span>Back to Home</span>
+                </a>
+                <button class="mobile-menu-btn" aria-label="Mobile Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container reviews-section">
+        <div class="reviews-header">
+            <h1 class="gradient-text">පාරිභෝගික අදහස්</h1>
+            <p>අපගේ සේවාව ගැන පාරිභෝගිකයින් පවසන දේ පහතින් දැක්වේ. ඔබත් අත්විඳ බලන්න.</p>
+        </div>
+
+        <button class="scroll-btn prev-btn" aria-label="Previous Review">❮</button>
+        <div class="reviews-grid">
+            <!-- Review 1 -->
+            <!-- Review 1 -->
+            <!-- Review 1 -->
+            <div class="glass-card">
+                <div class="whatsapp-chat-container">
+                    <div class="wa-header">
+                        <div class="wa-back-btn">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+                            </svg>
+                        </div>
+                        <div class="wa-avatar">K</div>
+                        <div class="wa-header-info">
+                            <h3 class="wa-name">Kasun Perera</h3>
+                            <p class="wa-status">online</p>
+                        </div>
+                        <div class="wa-header-actions">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="#8696a0">
+                                <path
+                                    d="M15.9 14.3H15l-.3-.3c1-1.1 1.6-2.7 1.6-4.3 0-3.7-3-6.7-6.7-6.7S3 6 3 9.7s3 6.7 6.7 6.7c1.6 0 3.2-.6 4.3-1.6l.3.3v.9l5.1 5.1 1.5-1.5-5-5.2zm-6.2 0c-2.6 0-4.6-2.1-4.6-4.6s2.1-4.6 4.6-4.6 4.6 2.1 4.6 4.6-2 4.6-4.6 4.6z">
+                                </path>
+                            </svg>
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="#8696a0" style="margin-left: 10px;">
+                                <path
+                                    d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="wa-body">
+                        <div class="wa-message sent">
+                            Account එක active කරලා දැම්මා. Check කරලා බලන්න.
+                            <span class="wa-time">10:28 AM</span>
+                        </div>
+                        <div class="wa-message">
+                            එළකිරි වගේ වැඩ බං.. පට්ට.. Thank you සාගෝ! ❤️
+                            <span class="wa-time">10:30 AM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <!-- Review 2 -->
+            <!-- Review 2 -->
+            <div class="glass-card">
+                <div class="whatsapp-chat-container">
+                    <div class="wa-header">
+                        <div class="wa-back-btn">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+                            </svg>
+                        </div>
+                        <div class="wa-avatar">R</div>
+                        <div class="wa-header-info">
+                            <h3 class="wa-name">Ruwan de Silva</h3>
+                            <p class="wa-status">last seen today at 2:15 PM</p>
+                        </div>
+                        <div class="wa-header-actions">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="#8696a0">
+                                <path
+                                    d="M15.9 14.3H15l-.3-.3c1-1.1 1.6-2.7 1.6-4.3 0-3.7-3-6.7-6.7-6.7S3 6 3 9.7s3 6.7 6.7 6.7c1.6 0 3.2-.6 4.3-1.6l.3.3v.9l5.1 5.1 1.5-1.5-5-5.2zm-6.2 0c-2.6 0-4.6-2.1-4.6-4.6s2.1-4.6 4.6-4.6 4.6 2.1 4.6 4.6-2 4.6-4.6 4.6z">
+                                </path>
+                            </svg>
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="#8696a0" style="margin-left: 10px;">
+                                <path
+                                    d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="wa-body">
+                        <div class="wa-message sent">
+                            YouTube Premium ඇක්ටිව් කළා. අවුලක් නෑනේ?
+                            <span class="wa-time">2:10 PM</span>
+                        </div>
+                        <div class="wa-message">
+                            අඩෝ සුපිරියට වැඩ බං. දැන් Ads එන්නෙත් නෑ. Thanks හොඳේ. 👍
+                            <span class="wa-time">2:14 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 3 -->
+            <!-- Review 3 -->
+            <!-- Review 3 -->
+            <div class="glass-card">
+                <div class="whatsapp-chat-container">
+                    <div class="wa-header">
+                        <div class="wa-back-btn">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+                            </svg>
+                        </div>
+                        <div class="wa-avatar">N</div>
+                        <div class="wa-header-info">
+                            <h3 class="wa-name">Nimali Fernando</h3>
+                            <p class="wa-status">online</p>
+                        </div>
+                        <div class="wa-header-actions">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="#8696a0">
+                                <path
+                                    d="M15.9 14.3H15l-.3-.3c1-1.1 1.6-2.7 1.6-4.3 0-3.7-3-6.7-6.7-6.7S3 6 3 9.7s3 6.7 6.7 6.7c1.6 0 3.2-.6 4.3-1.6l.3.3v.9l5.1 5.1 1.5-1.5-5-5.2zm-6.2 0c-2.6 0-4.6-2.1-4.6-4.6s2.1-4.6 4.6-4.6 4.6 2.1 4.6 4.6-2 4.6-4.6 4.6z">
+                                </path>
+                            </svg>
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="#8696a0" style="margin-left: 10px;">
+                                <path
+                                    d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="wa-body">
+                        <div class="wa-message sent">
+                            වැඩේ හොඳයි ද? අවුලක් නෑනේද?
+                            <span class="wa-time">09:40 AM</span>
+                        </div>
+                        <div class="wa-message">
+                            ඔව් ඔව් සුපිරි.. යාලුවෙක්ටත් කිව්වා ගන්න කියලා.. ජය වේවා! 🥳
+                            <span class="wa-time">09:45 AM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 4 -->
+            <!-- Review 4 -->
+            <!-- Review 4 -->
+            <div class="glass-card">
+                <div class="whatsapp-chat-container">
+                    <div class="wa-header">
+                        <div class="wa-back-btn">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+                            </svg>
+                        </div>
+                        <div class="wa-avatar">A</div>
+                        <div class="wa-header-info">
+                            <h3 class="wa-name">Ashan Kumara</h3>
+                            <p class="wa-status">online</p>
+                        </div>
+                        <div class="wa-header-actions">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="#8696a0">
+                                <path
+                                    d="M15.9 14.3H15l-.3-.3c1-1.1 1.6-2.7 1.6-4.3 0-3.7-3-6.7-6.7-6.7S3 6 3 9.7s3 6.7 6.7 6.7c1.6 0 3.2-.6 4.3-1.6l.3.3v.9l5.1 5.1 1.5-1.5-5-5.2zm-6.2 0c-2.6 0-4.6-2.1-4.6-4.6s2.1-4.6 4.6-4.6 4.6 2.1 4.6 4.6-2 4.6-4.6 4.6z">
+                                </path>
+                            </svg>
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="#8696a0" style="margin-left: 10px;">
+                                <path
+                                    d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="wa-body">
+                        <div class="wa-message sent">
+                            Netflix active කළා. බලන්න.
+                            <span class="wa-time">Yesterday</span>
+                        </div>
+                        <div class="wa-message">
+                            පට්ට බං.. 4K quality එකටම ප්ලේ වෙනවා.. සුපිරි.. 🔥
+                            <span class="wa-time">Yesterday</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 5 -->
+            <!-- Review 5 -->
+            <!-- Review 5 -->
+            <div class="glass-card">
+                <div class="whatsapp-chat-container">
+                    <div class="wa-header">
+                        <div class="wa-back-btn">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+                            </svg>
+                        </div>
+                        <div class="wa-avatar">C</div>
+                        <div class="wa-header-info">
+                            <h3 class="wa-name">Chaturanga Devinda</h3>
+                            <p class="wa-status">last seen Friday</p>
+                        </div>
+                        <div class="wa-header-actions">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="#8696a0">
+                                <path
+                                    d="M15.9 14.3H15l-.3-.3c1-1.1 1.6-2.7 1.6-4.3 0-3.7-3-6.7-6.7-6.7S3 6 3 9.7s3 6.7 6.7 6.7c1.6 0 3.2-.6 4.3-1.6l.3.3v.9l5.1 5.1 1.5-1.5-5-5.2zm-6.2 0c-2.6 0-4.6-2.1-4.6-4.6s2.1-4.6 4.6-4.6 4.6 2.1 4.6 4.6-2 4.6-4.6 4.6z">
+                                </path>
+                            </svg>
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="#8696a0" style="margin-left: 10px;">
+                                <path
+                                    d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="wa-body">
+                        <div class="wa-message sent">
+                            සල්ලි ආවා බ්‍රෝ. විනාඩි 5ක් දෙන්න.
+                            <span class="wa-time">11:10 AM</span>
+                        </div>
+                        <div class="wa-message">
+                            අඩෝ සිරාවටම විනාඩි 5න් වැඩ නේ.. Thanks bro! පට්ට fast ඈ.. ❤️
+                            <span class="wa-time">11:15 AM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 6 -->
+            <!-- Review 6 -->
+            <!-- Review 6 -->
+            <div class="glass-card">
+                <div class="whatsapp-chat-container">
+                    <div class="wa-header">
+                        <div class="wa-back-btn">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+                            </svg>
+                        </div>
+                        <div class="wa-avatar">D</div>
+                        <div class="wa-header-info">
+                            <h3 class="wa-name">Dilan Madushanka</h3>
+                            <p class="wa-status">online</p>
+                        </div>
+                        <div class="wa-header-actions">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="#8696a0">
+                                <path
+                                    d="M15.9 14.3H15l-.3-.3c1-1.1 1.6-2.7 1.6-4.3 0-3.7-3-6.7-6.7-6.7S3 6 3 9.7s3 6.7 6.7 6.7c1.6 0 3.2-.6 4.3-1.6l.3.3v.9l5.1 5.1 1.5-1.5-5-5.2zm-6.2 0c-2.6 0-4.6-2.1-4.6-4.6s2.1-4.6 4.6-4.6 4.6 2.1 4.6 4.6-2 4.6-4.6 4.6z">
+                                </path>
+                            </svg>
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="#8696a0" style="margin-left: 10px;">
+                                <path
+                                    d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="wa-body">
+                        <div class="wa-message sent">
+                            දැන් හරි.. Login වෙලා බලන්න.
+                            <span class="wa-time">5:40 PM</span>
+                        </div>
+                        <div class="wa-message">
+                            වැඩ බ්‍රෝ.. මරු ආ.. Data ත් ඉතුරු වෙනවා දැන් Youtube Premium හින්දා.. Thanks බොක්ක.
+                            <div class="wa-time">5:45 PM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="scroll-btn next-btn" aria-label="Next Review">❯</button>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2>BuyItems.lk</h2>
+                    <p>ප්‍රමුඛතම ඩිජිටල් සේවා සැපයුම්කරු - ශ්‍රී ලංකා.</p>
+                </div>
+                <div class="footer-contact">
+                    <p>අපව WhatsApp හරහා සම්බන්ධ කරගන්න.</p>
+                    <a href="https://wa.me/94765494631" class="footer-link">Support: +94765494631</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-social-bottom">
+                    <a href="https://youtube.com" target="_blank" class="yt-button-premium">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                        </svg>
+                        <span>GO TO YOUTUBE</span>
+                    </a>
+                </div>
+                <p>&copy; 2026 BuyItems.lk. All rights reserved.</p>
+                <div class="developer-section">
+                    <p class="developer-credit">By - Lv.peiris</p>
+                    <a href="https://www.facebook.com/profile.php?id=61578367157426" target="_blank"
+                        class="fb-button-small">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.846 3.444 8.89 8.144 9.639v-6.82H7.693v-2.82h2.45V9.873c0-2.42 1.442-3.768 3.665-3.768 1.065 0 2.172.189 2.172.189v2.388h-1.223c-1.196 0-1.57.742-1.57 1.503v1.815h2.69l-.43 2.82h-2.26v6.82C18.556 20.89 22 16.846 22 12z" />
+                        </svg>
+                        Connect on Facebook
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp CTA Button -->
+    <a href="https://wa.me/94765494631" target="_blank" class="whatsapp-float-btn">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+        <span>දැන්ම ඇණවුම් කරන්න</span>
+    </a>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-top" class="scroll-top-btn" aria-label="Main Menu">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+        <span>Main Menu</span>
+    </button>
+
+    <script src="script.js"></script>
+    <script>
+        // Inline script for Reviews Page Carousel
+        document.addEventListener('DOMContentLoaded', () => {
+            const slider = document.querySelector('.reviews-grid');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+
+            if (slider && prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => {
+                    slider.scrollBy({ left: -370, behavior: 'smooth' }); // Card width + gap
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    slider.scrollBy({ left: 370, behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

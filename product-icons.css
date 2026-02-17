@@ -1,0 +1,123 @@
+/* Product Icons Showcase */
+.product-icons-showcase {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.product-icons-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 0 20px;
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.product-icons-container::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari */
+}
+
+.product-icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 80px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.product-icon-item:hover {
+    transform: translateY(-5px);
+}
+
+.product-icon-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.product-icon-item:hover .product-icon-circle {
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.product-icon-item p {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.click-here {
+    font-size: 10px;
+    color: var(--primary-red, #ff4d4d);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+    opacity: 0.8;
+    animation: simpleBlink 2s infinite;
+}
+
+@keyframes simpleBlink {
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-icons-container {
+        gap: 25px;
+        padding: 0 15px;
+    }
+
+    .product-icon-circle {
+        width: 60px;
+        height: 60px;
+    }
+
+    .product-icon-circle svg {
+        width: 32px !important;
+        height: 32px !important;
+    }
+
+    .product-icon-item p {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-icons-container {
+        gap: 20px;
+        justify-content: flex-start;
+    }
+
+    .product-icon-circle {
+        width: 55px;
+        height: 55px;
+    }
+}
